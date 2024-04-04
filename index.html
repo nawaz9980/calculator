@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark UI Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #1a202c;
+        }
+
+        .calculator {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="flex justify-center items-center h-screen">
+        <div class="calculator bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="grid grid-cols-4 gap-3">
+                <!-- Display -->
+                <div id="display" class="col-span-4 text-right text-white text-3xl font-bold"></div>
+
+                <!-- Buttons -->
+                <button onclick="clearDisplay()" class="btn col-span-3 bg-gray-700 text-white p-4 rounded-lg font-bold">C</button>
+                <button onclick="deleteLast()" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">DEL</button>
+                <button onclick="appendToDisplay('/')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">/</button>
+                
+                <button onclick="appendToDisplay('7')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">7</button>
+                <button onclick="appendToDisplay('8')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">8</button>
+                <button onclick="appendToDisplay('9')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">9</button>
+                <button onclick="appendToDisplay('*')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">*</button>
+
+                <button onclick="appendToDisplay('4')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">4</button>
+                <button onclick="appendToDisplay('5')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">5</button>
+                <button onclick="appendToDisplay('6')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">6</button>
+                <button onclick="appendToDisplay('-')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">-</button>
+
+                <button onclick="appendToDisplay('1')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">1</button>
+                <button onclick="appendToDisplay('2')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">2</button>
+                <button onclick="appendToDisplay('3')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">3</button>
+                <button onclick="appendToDisplay('+')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">+</button>
+
+                <button onclick="appendToDisplay('0')" class="btn col-span-2 bg-gray-700 text-white p-4 rounded-lg font-bold">0</button>
+                <button onclick="appendToDisplay('.')" class="btn bg-gray-700 text-white p-4 rounded-lg font-bold">.</button>
+                <button onclick="calculate()" class="btn bg-blue-500 text-white p-4 rounded-lg font-bold col-span-2">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to append value to display
+        function appendToDisplay(value) {
+            document.getElementById('display').innerText += value;
+        }
+
+        // Function to clear display
+        function clearDisplay() {
+            document.getElementById('display').innerText = '';
+        }
+
+        // Function to delete last character
+        function deleteLast() {
+            var display = document.getElementById('display').innerText;
+            document.getElementById('display').innerText = display.slice(0, -1);
+        }
+
+        // Function to calculate result
+        function calculate() {
+            var display = document.getElementById('display').innerText;
+            try {
+                var result = eval(display);
+                document.getElementById('display').innerText = result;
+            } catch (error) {
+                document.getElementById('display').innerText = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
